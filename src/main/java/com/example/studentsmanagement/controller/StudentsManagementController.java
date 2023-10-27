@@ -1,7 +1,6 @@
 package com.example.studentsmanagement.controller;
 
-import com.example.studentsmanagement.bean.Courses;
-import com.example.studentsmanagement.bean.Students;
+import com.example.studentsmanagement.bean.*;
 import com.example.studentsmanagement.service.StudentManagementSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -63,10 +62,19 @@ public List<Courses> getCourseByCourseCredit(@RequestParam Long courseCredit){
         return studentManagementSevice.getCourseByCourseCredit(courseCredit);
 }
 
+    @PostMapping("/enrollnewsubjects")
+    public Boolean enrollsubjects(@RequestBody Enrollment enrollment){
+        return studentManagementSevice.enrollsubjects(enrollment);
+    }
 
     @PostMapping("/get")
     public Courses get(){
      return new Courses();
+ }
+
+ @GetMapping("/getallstudentdetailswithenrolledcourses")
+ public List<StudentDetailsWithEnrolledCoursesWithNoDuplicates> getAllStudentDetailsWithEnrolledCourses(){
+        return studentManagementSevice.getAllStudentDetailsWithEnrolledCourses();
  }
 
 }

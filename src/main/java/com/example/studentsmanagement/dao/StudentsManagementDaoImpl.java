@@ -1,6 +1,8 @@
 package com.example.studentsmanagement.dao;
 
 import com.example.studentsmanagement.bean.Courses;
+import com.example.studentsmanagement.bean.Enrollment;
+import com.example.studentsmanagement.bean.StudentDetailsWithEnrolledCourses;
 import com.example.studentsmanagement.bean.Students;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,13 @@ public class StudentsManagementDaoImpl implements StudentsManagementDao {
     private String queryToCreateEnrollments;
     @Value("${queryToCreateStudents}")
     private String queryToCreateStudents;
+
+    @Value("${queryToInsertEnrollment}")
+    private String queryToInsertEnrollment;
+
+    @Value("${queryToGetStudentDetailsWithEnrolledCourses}")
+    private String queryToGetStudentDetailsWithEnrolledCourses;
+
 
     @PostConstruct
     public void initiate() {
@@ -123,6 +132,16 @@ public class StudentsManagementDaoImpl implements StudentsManagementDao {
 
 
         return namedParameterJdbcTemplate.update(queryToInsertCourses, new BeanPropertySqlParameterSource(courses)) > 0;
+    }
+
+    @Override
+    public Boolean enrollsubjects(Enrollment enrollment) {
+        return namedParameterJdbcTemplate.update(queryToInsertEnrollment,new BeanPropertySqlParameterSource(enrollment)  ) > 0;
+    }
+
+    @Override
+    public List<StudentDetailsWithEnrolledCourses> getAllStudentDetailsWithEnrolledCourses() {
+        return namedParameterJdbcTemplate.query(queryToGetStudentDetailsWithEnrolledCourses,new BeanPropertyRowMapper<StudentDetailsWithEnrolledCourses>(StudentDetailsWithEnrolledCourses.class));
     }
 
 

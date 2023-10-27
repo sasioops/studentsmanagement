@@ -1,7 +1,6 @@
 package com.example.studentsmanagement.service;
 
-import com.example.studentsmanagement.bean.Courses;
-import com.example.studentsmanagement.bean.Students;
+import com.example.studentsmanagement.bean.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -23,6 +22,8 @@ public interface StudentManagementSevice {
 
     public Boolean addNewCourse(Courses courses);
 
+    public Boolean enrollsubjects(Enrollment enrollment);
 
+    public List<StudentDetailsWithEnrolledCoursesWithNoDuplicates> getAllStudentDetailsWithEnrolledCourses();
 
 }

@@ -1,6 +1,8 @@
 package com.example.studentsmanagement.dao;
 
 import com.example.studentsmanagement.bean.Courses;
+import com.example.studentsmanagement.bean.Enrollment;
+import com.example.studentsmanagement.bean.StudentDetailsWithEnrolledCourses;
 import com.example.studentsmanagement.bean.Students;
 
 import java.util.List;
@@ -23,6 +25,9 @@ public interface StudentsManagementDao {
 
     public Boolean addNewCourse(Courses courses);
 
+    public Boolean enrollsubjects(Enrollment enrollment);
+
+    public List<StudentDetailsWithEnrolledCourses> getAllStudentDetailsWithEnrolledCourses();
 
 
 }
